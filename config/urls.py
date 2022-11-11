@@ -14,20 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 
 from woman.views import *
-from rest_framework import routers
-from woman.routers import MyCustomRouter
-
-# router = MyCustomRouter()
-router = routers.DefaultRouter()
-router.register(r'woman', WomanViewSet, basename='woman')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)),
-    # path('api/v1/womanlist/', WomanViewSet.as_view({'get': 'list'})),
-    # path('api/v1/womanlist/<int:pk>/', WomanViewSet.as_view({'put': 'update'})),
+    path('api/v1/woman/', WomanAPIListCreateView.as_view()),
+    path('api/v1/woman/<int:pk>/', WomanAPIUpdateView.as_view()),
+    path('api/v1/womandelete/<int:pk>/', WomanAPIDestroyView.as_view()),
 ]
-
