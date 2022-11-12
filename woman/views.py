@@ -10,7 +10,7 @@ from .serializers import WomanSerializer
 class WomanAPIListCreateView(generics.ListCreateAPIView):
     queryset = Woman.objects.all()
     serializer_class = WomanSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
     # authentication_classes = [TokenAuthentication]
 
 
